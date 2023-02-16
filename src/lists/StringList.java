@@ -14,7 +14,7 @@ public interface StringList {
     // выбросить исключение.
     // Вернуть добавленный элемент
     // в качестве результата выполнения.
-    String add(int index, String item);
+    String add(int index, String item) throws Exception;
 
     // Установить элемент
     // на определенную позицию,
@@ -23,19 +23,19 @@ public interface StringList {
     // если индекс больше
     // фактического количества элементов
     // или выходит за пределы массива.
-    String set(int index, String item);
+    String set(int index, String item) throws Exception;
 
     // Удаление элемента.
     // Вернуть удаленный элемент
     // или исключение, если подобный
     // элемент отсутствует в списке.
-    String remove(String item);
+    String remove(String item) throws Exception;
 
     // Удаление элемента по индексу.
     // Вернуть удаленный элемент
     // или исключение, если подобный
     // элемент отсутствует в списке.
-    String remove(int index);
+    String remove(int index) throws Exception;
 
     // Проверка на существование элемента.
     // Вернуть true/false;
@@ -55,12 +55,12 @@ public interface StringList {
     // Вернуть элемент или исключение,
     // если выходит за рамки фактического
     // количества элементов.
-    String get(int index);
+    String get(int index) throws Exception;
 
     // Сравнить текущий список с другим.
     // Вернуть true/false или исключение,
     // если передан null.
-    boolean equals(StringList otherList);
+    boolean equals(StringList otherList) throws Exception;
 
     // Вернуть фактическое количество элементов.
     int size();
