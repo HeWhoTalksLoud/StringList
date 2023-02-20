@@ -24,7 +24,7 @@ public class IntListImpl implements IntList {
     @Override
     public Integer add(Integer item) {
         if (size + 1 == array.length) {
-            widenArray();
+            grow();
         }
         array[size] = item;
         size++;
@@ -45,7 +45,7 @@ public class IntListImpl implements IntList {
         }
 
         if (size + 1 == array.length) {
-            widenArray();
+            grow();
         }
 
         if (index == size || index == size - 1) {
@@ -230,7 +230,7 @@ public class IntListImpl implements IntList {
     }
 
     // Увеличение длины массива в DEFAULT_WIDEN_COEFFICIENT раз.
-    private void widenArray() {
+    private void grow() {
         Integer[] newArray = new Integer[(int) (array.length * DEFAULT_WIDEN_COEFFICIENT)];
 
         newArray = Arrays.copyOf(array, newArray.length);
@@ -269,6 +269,32 @@ public class IntListImpl implements IntList {
             }
             array[j] = temp;
         }
+    }
+
+    public void quickSort() {
+        quickSort(array, 0, size - 1);
+    }
+
+    private void quickSort(Integer[] arr, int left, int right) {
+        if (left < right) return;
+
+        Integer pivot = arr[right];
+        int index = partition(arr, left, right, pivot);
+        quickSort(arr, left, index - 1);
+        quickSort(arr, index, right);
+    }
+
+    private int partition(Integer[] arr, int left, int right, Integer pivot) {
+        while (left <= right) {
+            while (arr[left] < pivot) left++;
+            while (arr[right] > pivot) right--;
+            if (left <= right) {
+                swapElements(arr, left, right);
+                left++;
+                right--;
+            }
+        }
+        return left;
     }
 
     private static void swapElements(Integer[] arr, int indexA, int indexB) {
