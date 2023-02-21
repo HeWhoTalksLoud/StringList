@@ -80,5 +80,6 @@ public interface IntList {
 
     void bubbleSort();
     void selectionSort();
+    void quickSort();
 }
 
